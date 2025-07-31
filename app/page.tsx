@@ -19,35 +19,35 @@ const modelConfigs: { [key: string]: ModelConfig } = {
     color: "#3B82F6", 
     icon: "GPT", 
     iconBg: "#10B981",
-    imageSrc: "public/images/gpt4-turbo-logo.webp"
+    imageSrc: "public/images/gpt4-turbo-logo.png"
   },
   "Claude-3.5 Sonnet": { 
     name: "Claude-3.5 Sonnet", 
     color: "#6366F1", 
     icon: "C", 
     iconBg: "#F59E0B",
-    imageSrc: "public/images/claude.webp"
+    imageSrc: "public/images/claude-logo.png"
   },
   "Gemini Ultra": { 
     name: "Gemini Ultra", 
     color: "#8B5CF6", 
     icon: "G", 
     iconBg: "#3B82F6",
-    imageSrc: "public/images/gemini.png"
+    imageSrc: "public/images/gemini-logo.png"
   },
   "LLaMA-3-70B": { 
     name: "LLaMA-3-70B", 
     color: "#A855F7", 
     icon: "L", 
     iconBg: "#3B82F6",
-    imageSrc: "public/images/llama.png"
+    imageSrc: "public/images/llama-logo.png"
   },
   "GPT-4": { 
     name: "GPT-4", 
     color: "#F59E0B", 
     icon: "4", 
     iconBg: "#10B981",
-    imageSrc: "public/images/grok.png"
+    imageSrc: "public/images/gpt4-logo.png"
   },
 }
 
