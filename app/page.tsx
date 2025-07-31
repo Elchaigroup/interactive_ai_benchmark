@@ -10,14 +10,45 @@ interface ModelConfig {
   color: string
   icon: string
   iconBg: string
+  imageSrc: string
 }
 
 const modelConfigs: { [key: string]: ModelConfig } = {
-  "GPT-4 Turbo": { name: "GPT-4 Turbo", color: "#3B82F6", icon: "GPT", iconBg: "#10B981" },
-  "Claude-3.5 Sonnet": { name: "Claude-3.5 Sonnet", color: "#6366F1", icon: "C", iconBg: "#F59E0B" },
-  "Gemini Ultra": { name: "Gemini Ultra", color: "#8B5CF6", icon: "G", iconBg: "#3B82F6" },
-  "LLaMA-3-70B": { name: "LLaMA-3-70B", color: "#A855F7", icon: "L", iconBg: "#3B82F6" },
-  "GPT-4": { name: "GPT-4", color: "#F59E0B", icon: "4", iconBg: "#10B981" },
+  "GPT-4 Turbo": { 
+    name: "GPT-4 Turbo", 
+    color: "#3B82F6", 
+    icon: "GPT", 
+    iconBg: "#10B981",
+    imageSrc: "public/images/gpt4-turbo-logo.webp"
+  },
+  "Claude-3.5 Sonnet": { 
+    name: "Claude-3.5 Sonnet", 
+    color: "#6366F1", 
+    icon: "C", 
+    iconBg: "#F59E0B",
+    imageSrc: "public/images/claude.webp"
+  },
+  "Gemini Ultra": { 
+    name: "Gemini Ultra", 
+    color: "#8B5CF6", 
+    icon: "G", 
+    iconBg: "#3B82F6",
+    imageSrc: "public/images/gemini.png"
+  },
+  "LLaMA-3-70B": { 
+    name: "LLaMA-3-70B", 
+    color: "#A855F7", 
+    icon: "L", 
+    iconBg: "#3B82F6",
+    imageSrc: "public/images/llama.png"
+  },
+  "GPT-4": { 
+    name: "GPT-4", 
+    color: "#F59E0B", 
+    icon: "4", 
+    iconBg: "#10B981",
+    imageSrc: "public/images/grok.png"
+  },
 }
 
 const benchmarkData = {
@@ -220,13 +251,29 @@ function Chart({ benchmark, animated }: ChartProps) {
           })}
         </div>
 
-        {/* Model names positioned at bottom */}
+        {/* Model logos positioned at bottom */}
         <div className="absolute bottom-0 left-0 right-0 flex justify-center gap-4 h-12">
-          {models.map((model) => (
-            <div key={`${model}-name`} className="flex-1 text-center max-w-16 flex items-center justify-center">
-              <div className="text-xs text-black font-medium leading-tight">{model}</div>
-            </div>
-          ))}
+          {models.map((model) => {
+            const config = modelConfigs[model]
+            return (
+              <div key={`${model}-logo`} className="flex-1 text-center max-w-16 flex items-center justify-center">
+                <img 
+                  src={config.imageSrc} 
+                  alt={`${model} logo`}
+                  className="w-6 h-6 object-contain"
+                  onError={(e) => {
+                    // Fallback to text icon if image fails to load
+                    const target = e.currentTarget as HTMLImageElement
+                    target.style.display = 'none'
+                    const fallbackDiv = document.createElement('div')
+                    fallbackDiv.className = 'text-xs text-black font-medium bg-gray-200 rounded px-1 py-0.5'
+                    fallbackDiv.textContent = config.icon
+                    target.parentNode?.appendChild(fallbackDiv)
+                  }}
+                />
+              </div>
+            )
+          })}
         </div>
       </div>
 
